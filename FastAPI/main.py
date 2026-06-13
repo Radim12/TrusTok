@@ -1,9 +1,18 @@
+print("MAIN START")
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from data_handler import data_manager
-from model_handler import models_prediction
+print("DATA HANDLER OK")
+
+# from model_handler import models_prediction
+print("MODEL HANDLER SKIPPED")
+
+@app.get("/")
+def root():
+    return {"status": "ok"}
 
 app = FastAPI(title="TrustTok Sentiment Analysis API")
 
@@ -190,6 +199,6 @@ async def get_metrics(request: ProductRequest):
     }
 
 
-@app.get("/")
-def read_root():
-    return {"message": "FastAPI Terintegrasi Model IndoBERT & Bi-LSTM Aktif."}
+# @app.get("/")
+# def read_root():
+#     return {"message": "FastAPI Terintegrasi Model IndoBERT & Bi-LSTM Aktif."}
