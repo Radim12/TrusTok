@@ -1,0 +1,67 @@
+/* Resources/css/app.css - Custom layouts & styles for TrustTok Dashboard */
+
+/* Hide unfinished alpine state before init */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Custom Modern Scrollbar Styling */
+.scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.3);
+    border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.5);
+}
+
+/* Ambient Glow Gradients & Dots background grid replicating React index.css */
+.bg-gradient-mesh {
+    background-image:
+        radial-gradient(at 0% 10%, rgba(219, 39, 119, 0.22) 0px, transparent 40%),
+        radial-gradient(at 100% 12%, rgba(14, 165, 233, 0.22) 0px, transparent 40%),
+        radial-gradient(at 50% 60%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+        radial-gradient(at 80% 90%, rgba(168, 85, 247, 0.12) 0px, transparent 40%);
+    background-color: #070811;
+    position: relative;
+}
+
+.bg-gradient-mesh::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+/* Float & Pulse keyframe animations matching the original application */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0.1deg); }
+    50% { transform: translateY(-10px) rotate(-1.5deg); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}
+

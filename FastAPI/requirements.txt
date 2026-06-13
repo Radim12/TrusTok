@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pandas
+numpy
+openpyxl
+tensorflow
+torch
+transformers
+huggingface_hub
+keras
+scikit-learn
+safetensors
