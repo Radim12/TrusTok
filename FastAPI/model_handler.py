@@ -46,8 +46,33 @@ def load_and_fix_keras_model(model_path):
             os.remove(temp_model_path)
 
 
+# class ModelPredictor:
+#     def __init__(self):
 class ModelPredictor:
     def __init__(self):
+
+        print("STEP 1")
+        self.repo_id = "pyogaaa/TrustTok"
+
+        print("STEP 2")
+        files = [
+            "indobert/config.json",
+            "indobert/tokenizer_config.json",
+            "indobert/model.safetensors"
+        ]
+
+        print("STEP 3")
+        paths = [hf_hub_download(repo_id=self.repo_id, filename=f) for f in files]
+
+        print("STEP 4")
+        self.bert_model = AutoModelForTokenClassification.from_pretrained(
+            "pyogaaa/TrustTok",
+            subfolder="indobert"
+        )
+
+        print("STEP 5")
+        
+        
         self.repo_id = "pyogaaa/TrustTok"
         print("⏳ Mendownload aset model...")
         
