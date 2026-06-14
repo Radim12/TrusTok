@@ -11,20 +11,20 @@ class ProductController extends Controller
     {
         // 1. Ambil input produk dari tombol yang diklik di Laravel (misal: 'toner')
         // Nama input di request Laravel kita buat 'product'
-        $productName = $request->input('product', 'toner'); 
+        $productName = $request->input('product', 'toner');
 
         try {
             // 2. Tembak FastAPI tepat ke endpoint /get-metrics dengan method POST
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-            ])->post('http://127.0.0.1:8000/get-metrics', [
+            ])->post('https://trusttok-api-260465484877.asia-southeast2.run.app/get-metrics', [
                 'product_name' => $productName // Kirim 'toner' dengan key 'product_name' sesuai FastAPI
             ]);
 
             // 3. Cek apakah FastAPI merespon dengan sukses
             if ($response->successful()) {
                 $data = $response->json();
-                
+
                 // Kirim data hasil olahan FastAPI ke view Blade Laravel Anda
                 return view('dashboard', [
                     'metrics' => $data,

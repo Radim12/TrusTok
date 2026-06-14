@@ -46,15 +46,14 @@ def load_and_fix_keras_model(model_path):
             os.remove(temp_model_path)
 
 
-# class ModelPredictor:
-#     def __init__(self):
 class ModelPredictor:
     def __init__(self):
-
+        self.repo_id = "pyogaaa/TrustTok"
         print("STEP 1")
         self.repo_id = "pyogaaa/TrustTok"
 
         print("STEP 2")
+
         files = [
             "indobert/config.json",
             "indobert/tokenizer_config.json",
@@ -62,31 +61,25 @@ class ModelPredictor:
         ]
 
         print("STEP 3")
+
         paths = [hf_hub_download(repo_id=self.repo_id, filename=f) for f in files]
 
         print("STEP 4")
+
         self.bert_model = AutoModelForTokenClassification.from_pretrained(
             "pyogaaa/TrustTok",
             subfolder="indobert"
         )
 
         print("STEP 5")
-        
-        
-        self.repo_id = "pyogaaa/TrustTok"
-        print("⏳ Mendownload aset model...")
-        
-        # Gunakan list file yang lengkap
-        files = ["indobert/config.json", "indobert/tokenizer_config.json", "indobert/model.safetensors"]
-        
-        # Download semua dan ambil folder path dari salah satu file
-        paths = [hf_hub_download(repo_id=self.repo_id, filename=f) for f in files]
-        folder_path = os.path.dirname(paths[0])
-        
-        # Load model sekali saja
-        # Ganti seluruh bagian awal __init__ menjadi ini:
-        self.bert_model = AutoModelForTokenClassification.from_pretrained("pyogaaa/TrustTok", subfolder="indobert")
-        self.bert_tokenizer = AutoTokenizer.from_pretrained("pyogaaa/TrustTok", subfolder="indobert", use_fast=False)
+
+        self.bert_tokenizer = AutoTokenizer.from_pretrained(
+            "pyogaaa/TrustTok",
+            subfolder="indobert",
+            use_fast=True
+        )
+
+        print("STEP 6")
         
         self.id2tag = {0: "O", 1: "B-BRAND", 2: "I-BRAND", 3: "B-PRODUCT", 4: "I-PRODUCT"}
         
@@ -219,4 +212,23 @@ class ModelPredictor:
             return "neutral"
 
 # Inisialisasi Handler secara Global
-models_prediction = ModelPredictor()
+# models_prediction = ModelPredictor()
+_model_instance = None
+
+import traceback
+
+def get_model():
+    global _model_instance
+
+    if _model_instance is None:
+        try:
+            print("🚀 Loading model pertama kali...")
+            _model_instance = ModelPredictor()
+
+        except Exception as e:
+            print("ERROR LOADING MODEL")
+            print(str(e))
+            traceback.print_exc()
+            raise
+
+    return _model_instance

@@ -16,7 +16,7 @@ class SentimentController extends Controller
 
         try {
             // 2. Tembak FastAPI (Ganti URL sesuai port FastAPI kamu)
-            $response = Http::timeout(30)->post('http://127.0.0.1:8000/get-metrics', [
+            $response = Http::timeout(30)->post('https://trusttok-api-260465484877.asia-southeast2.run.app/get-metrics', [
                 'product_name' => $request->product_name,
             ]);
 

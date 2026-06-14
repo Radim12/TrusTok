@@ -32,7 +32,7 @@ document.addEventListener('alpine:init', () => {
             try {
                 console.log("Mengirim request kata kunci produk ke FastAPI:", productName);
 
-                const response = await fetch('http://127.0.0.1:8000/get-metrics', {
+                const response = await fetch('https://trusttok-api-260465484877.asia-southeast2.run.app/get-metrics', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
