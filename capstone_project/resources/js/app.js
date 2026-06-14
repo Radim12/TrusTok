@@ -4,6 +4,7 @@ document.addEventListener('alpine:init', () => {
         isMobileMenuOpen: false,
         isDropdownOpen: false,
         activeProduct: '',
+        isLoading: false,
 
         // Variabel Utama Penampung Data
         productList: ['Toner', 'Moisturizer', 'Serum', 'Sunscreen', 'Face Wash', 'Cushion', 'Cleanser', 'Retinol', 'Bedak'],
